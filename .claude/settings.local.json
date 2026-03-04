@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:coss.com)",
+      "Bash(gh api \"repos/Volve-Technologies/volve-eval-web-app/contents/app/ui/components/accordion.tsx?ref=develop\" | python3 -c \"import json,sys,base64; d=json.load\\(sys.stdin\\); print\\(base64.b64decode\\(d['content']\\).decode\\(\\)\\)\")",
+      "Bash(ls /Users/matthewharrison-raft/VolveStorybook/src/app/ui/components/toggle* 2>/dev/null || echo \"no toggle files\"\ncat /Users/matthewharrison-raft/VolveStorybook/src/app/ui/components/button.tsx | head -80)",
+      "Bash(npx vite build --mode development 2>&1 | grep -E \"error|Error|cannot|Cannot|failed|Failed|missing|Missing\" | head -50)"
+    ]
+  }
+}

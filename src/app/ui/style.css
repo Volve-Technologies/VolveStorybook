@@ -1,0 +1,312 @@
+@import 'tailwindcss';
+@import './typography.css';
+
+@theme default {
+  /* radix gray */
+  --color-surface-1: #fcfcfc;
+  --color-surface-2: #f9f9f9;
+  --color-surface-3: #f0f0f0;
+  --color-surface-4: #e8e8e8;
+  --color-surface-5: #e0e0e0;
+  --color-surface-6: #d9d9d9;
+  --color-surface-7: #cecece;
+  --color-surface-8: #bbbbbb;
+  --color-surface-9: #8d8d8d;
+  --color-surface-10: #838383;
+  --color-surface-11: #646464;
+  --color-surface-12: #202020;
+
+  /* radix iris */
+  --color-primary-1: #fdfdff;
+  --color-primary-2: #f8f8ff;
+  --color-primary-3: #f0f1fe;
+  --color-primary-4: #e6e7ff;
+  --color-primary-5: #dadcff;
+  --color-primary-6: #cbcdff;
+  --color-primary-7: #b8baf8;
+  --color-primary-8: #9b9ef0;
+  --color-primary-9: #5b5bd6;
+  --color-primary-10: #5151cd;
+  --color-primary-11: #5753c6;
+  --color-primary-12: #272962;
+
+  --color-red-1: #fffcfc;
+  --color-red-2: #fff7f7;
+  --color-red-3: #feebec;
+  --color-red-4: #ffdbdc;
+  --color-red-5: #ffcdce;
+  --color-red-6: #fdbdbe;
+  --color-red-7: #f4a9aa;
+  --color-red-8: #eb8e90;
+  --color-red-9: #e5484d;
+  --color-red-10: #dc3e42;
+  --color-red-11: #b9282c;
+  --color-red-12: #641723;
+
+  --color-yellow-1: #fdfdf9;
+  --color-yellow-2: #fefce9;
+  --color-yellow-3: #fffab8;
+  --color-yellow-4: #fff394;
+  --color-yellow-5: #ffe770;
+  --color-yellow-6: #f3d768;
+  --color-yellow-7: #e4c767;
+  --color-yellow-8: #d5ae39;
+  --color-yellow-9: #ffe629;
+  --color-yellow-10: #ffdc00;
+  --color-yellow-11: #9e6c00;
+  --color-yellow-12: #473b1f;
+
+  --color-orange-1: #fefcfb;
+  --color-orange-2: #fff7ed;
+  --color-orange-3: #ffefd6;
+  --color-orange-4: #ffdfb5;
+  --color-orange-5: #ffd19a;
+  --color-orange-6: #ffc182;
+  --color-orange-7: #f5ae73;
+  --color-orange-8: #ec9455;
+  --color-orange-9: #f76b15;
+  --color-orange-10: #ef5f00;
+  --color-orange-11: #b84600;
+  --color-orange-12: #582d1d;
+
+  --color-blue-2: #f4faff;
+  --color-blue-3: #e6f4fe;
+  --color-blue-4: #d5efff;
+  --color-blue-9: #0090ff;
+  --color-blue-10: #0588f0;
+  --color-blue-11: #0d74ce;
+
+  --color-green-1: #fbfefc;
+  --color-green-2: #f4fbf6;
+  --color-green-3: #e6f6eb;
+  --color-green-4: #d6f1df;
+  --color-green-5: #c4e8d1;
+  --color-green-6: #adddc0;
+  --color-green-7: #8eceaa;
+  --color-green-8: #5bb98b;
+  --color-green-9: #30a46c;
+  --color-green-10: #2b9a66;
+  --color-green-11: #1e764f;
+  --color-green-12: #193b2d;
+
+  --color-neutral: rgb(32, 32, 32, 0.15); /* surface-12 */
+  --color-muted: var(--color-surface-11);
+  --color-destructive: #dc3e42;
+  --color-warning: var(--color-orange-11);
+  --color-success: var(--color-green-10);
+  --color-foreground: var(--color-surface-12);
+  --color-background: var(--color-surface-1);
+
+  --popup-padding: 0.2rem;
+  --popup-radius: var(--radius-lg);
+
+  --ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-bounce: cubic-bezier(0.375, 0.015, 0.545, 0.455);
+  --default-transition-duration: 35ms;
+
+  --animate-text-shimmer: text-shimmer 2s linear infinite;
+
+  --padding-x: 0.9rem;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(200%);
+    }
+  }
+  @keyframes text-shimmer {
+    0 {
+      backgroundposition: 0 0;
+    }
+    100% {
+      backgroundposition: -200% 0;
+    }
+  }
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+  }
+
+  @keyframes highlight-fade {
+    0% {
+      background-color: var(--color-amber-50);
+    }
+    50% {
+      background-color: var(--color-amber-50);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  --animate-highlight-fade: highlight-fade 4s linear forwards;
+}
+
+@layer base {
+  * {
+    @apply border-neutral;
+  }
+
+  body {
+    @apply text-foreground;
+  }
+}
+
+@media (min-width: theme('screens.md')) {
+  :root {
+    --padding-x: 1rem;
+  }
+}
+
+@media (min-width: theme('screens.xl')) {
+  :root {
+    --padding-x: 1.25rem;
+  }
+}
+
+@layer base {
+  strong {
+    font-weight: 600;
+  }
+  body {
+    font-family: var(--font-geist), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [data-slot='form'] label:has(~ input:not([required]))::after,
+  [data-slot='form'] label:has(~ textarea:not([required]))::after {
+    content: ' (optional)';
+  }
+
+  [lang='nb-NO'] [data-slot='form'] label:has(~ input:not([required]))::after,
+  [lang='nb-NO'] [data-slot='form'] label:has(~ textarea:not([required]))::after {
+    content: ' (valgfritt)';
+  }
+
+  [data-slot='form'] label:has(~ input[required])::after,
+  [data-slot='form'] label:has(~ textarea[required])::after {
+    content: ' *';
+  }
+
+  /* accordion transition */
+  html body div[hidden]:not([hidden='until-found']) {
+    display: grid !important;
+    visibility: hidden;
+  }
+
+  p:not(.prose) {
+    text-wrap: pretty;
+  }
+}
+
+@utility scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+@utility not-touch-hitbox {
+  &::before {
+    display: none !important;
+  }
+}
+
+@utility line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  white-space: normal;
+  &:not(.text-center) {
+    text-align: left;
+  }
+  &:not(:has(svg)) {
+    word-break: break-all;
+  }
+}
+
+@utility line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+}
+
+@utility touch-hitbox {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    min-height: 44px;
+    min-width: 44px;
+    z-index: 9999;
+  }
+}
+
+.notification {
+  button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    left: unset;
+  }
+}
+
+/* PDF.js highlight text class, make it important to show all highlights the same color */
+.highlight {
+  background-color: var(--highlight-selected-bg-color) !important;
+  backdrop-filter: var(--highlight-selected-backdrop-filter) !important;
+}
+
+#viewer * {
+  box-sizing: content-box;
+}
+
+.w-chat-adjusted {
+  width: calc(100% - var(--chat-window-width));
+  max-width: calc(100% - var(--chat-window-width));
+}
+
+.margin-chat-adjusted {
+  margin-right: var(--chat-window-width);
+}
+
+.w-chat {
+  width: var(--chat-window-width);
+  max-width: var(--chat-window-width);
+}
+
+/* Action bar slide-in animation */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@utility animate-slide-in {
+  animation: slide-in 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
