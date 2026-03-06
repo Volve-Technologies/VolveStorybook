@@ -13,13 +13,45 @@ const meta = {
   component: CircularProgress,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    value: {
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+      description: 'Current progress value between 0 and 100. Pass null for indeterminate state.',
+      table: {
+        defaultValue: { summary: 0 },
+      },
+    },
+    size: {
+      control: { type: 'number' },
+      description: 'Diameter of the circular progress indicator in pixels',
+      table: {
+        defaultValue: { summary: 48 },
+      },
+    },
+    thickness: {
+      control: { type: 'number' },
+      description: 'Thickness of the circular track stroke in pixels',
+    },
+    label: {
+      control: { type: 'text' },
+      description: 'Accessible label text displayed in the center of the circle',
+    },
+    color: {
+      control: { type: 'color' },
+      description: 'Color of the progress indicator arc',
+    },
+  },
 } satisfies Meta<typeof CircularProgress>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <CircularProgress value={60} size={80} />,
+  args: {
+    value: 75,
+    size: 48,
+    label: 'Progress',
+  },
 };
 
 export const Quarter: Story = {

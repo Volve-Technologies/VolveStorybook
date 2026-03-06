@@ -13,14 +13,27 @@ const meta = {
   component: Accordion,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    openMultiple: {
+      control: { type: 'boolean' },
+      description: 'When true, multiple accordion items can be open simultaneously',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+  },
 } satisfies Meta<typeof Accordion>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Accordion className="w-80 divide-y rounded-lg border">
+  args: {
+    openMultiple: false,
+  },
+  render: (args) => (
+    <Accordion className="w-80 divide-y rounded-lg border" {...args}>
       <AccordionItem value="item-1">
         <AccordionTrigger className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium hover:bg-surface-2">
           What is Volve UI?

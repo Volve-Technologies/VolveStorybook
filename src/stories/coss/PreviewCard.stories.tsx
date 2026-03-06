@@ -6,16 +6,37 @@ const meta = {
   component: PreviewCard,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    open: {
+      control: 'boolean',
+      description: 'Controlled open state of the preview card popup',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback fired when the open state changes',
+    },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Initial open state when uncontrolled',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
+    children: {
+      control: false,
+      description: 'PreviewCard sub-components: PreviewCardTrigger, PreviewCardPopup',
+    },
+  },
 } satisfies Meta<typeof PreviewCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <PreviewCard>
+  render: (args) => (
+    <PreviewCard {...args}>
       <PreviewCardTrigger>
-        <a href="#" className="text-sm font-medium underline underline-offset-4">
+        <a href="#" onClick={(e) => e.preventDefault()} className="text-sm font-medium underline underline-offset-4">
           Hover over this link
         </a>
       </PreviewCardTrigger>

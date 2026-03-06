@@ -7,6 +7,16 @@ const meta = {
   component: Fieldset,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disables all form controls within the fieldset',
+    },
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the fieldset element',
+    },
+  },
   decorators: [
     (Story) => (
       <div className="w-80">
@@ -20,8 +30,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Fieldset>
+  args: {
+    disabled: false,
+  },
+  render: (args) => (
+    <Fieldset {...args}>
       <FieldsetLegend>Personal Information</FieldsetLegend>
       <Field>
         <FieldLabel>Full Name</FieldLabel>

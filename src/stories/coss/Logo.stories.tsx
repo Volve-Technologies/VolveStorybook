@@ -5,12 +5,19 @@ const meta: Meta<typeof Logo> = {
   title: 'Volve UI/Brand/Logo',
   component: Logo,
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names for the Logo — useful for setting color or size',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Logo>;
 
 export const Default: Story = {
-  render: () => <Logo />,
+  args: { className: '' },
+  render: (args) => <Logo {...args} />,
 };
 
 export const Icon: Story = {

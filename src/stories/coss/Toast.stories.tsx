@@ -7,14 +7,31 @@ const meta = {
   component: ToastProvider,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    position: {
+      control: { type: 'select' },
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
+      description: 'The position where toasts appear on the screen',
+    },
+  },
 } satisfies Meta<typeof ToastProvider>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <ToastProvider>
+  args: {
+    position: 'bottom-right',
+  },
+  render: (args) => (
+    <ToastProvider position={args.position}>
       <Button onClick={() => toastManager.add({ title: 'Saved!', type: 'success' })}>
         Show Toast
       </Button>

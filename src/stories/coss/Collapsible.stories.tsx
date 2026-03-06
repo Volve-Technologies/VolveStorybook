@@ -12,14 +12,41 @@ const meta = {
   component: Collapsible,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    defaultOpen: {
+      control: { type: 'boolean' },
+      description: 'The initial open state of the collapsible (uncontrolled)',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    open: {
+      control: { type: 'boolean' },
+      description: 'The controlled open state of the collapsible',
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback fired when the open state changes',
+      table: {
+        type: { summary: '(open: boolean) => void' },
+      },
+    },
+  },
 } satisfies Meta<typeof Collapsible>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Collapsible className="w-72 rounded-lg border">
+  args: {
+    defaultOpen: false,
+  },
+  render: (args) => (
+    <Collapsible className="w-72 rounded-lg border" {...args}>
       <CollapsibleTrigger className="w-full px-4 py-3 text-sm font-medium text-left hover:bg-surface-2 rounded-lg">
         Show details
       </CollapsibleTrigger>

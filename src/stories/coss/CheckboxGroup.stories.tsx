@@ -15,6 +15,14 @@ const meta = {
   argTypes: {
     disabled: {
       control: { type: 'boolean' },
+      description: 'Whether all items in the group are disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    defaultValue: {
+      control: { type: 'object' },
+      description: 'Array of values that are checked by default (uncontrolled)',
     },
   },
 } satisfies Meta<typeof CheckboxGroup>;
@@ -23,6 +31,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    disabled: false,
+    defaultValue: [],
+  },
   render: (args) => (
     <CheckboxGroup {...args}>
       <CheckboxGroupLabel>

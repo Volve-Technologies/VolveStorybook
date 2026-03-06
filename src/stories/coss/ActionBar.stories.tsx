@@ -15,11 +15,46 @@ const meta: Meta<typeof ActionBar> = {
   title: 'Volve UI/Overlays/ActionBar',
   component: ActionBar,
   tags: ['autodocs'],
+  argTypes: {
+    open: {
+      control: { type: 'boolean' },
+      description: 'Whether the action bar is visible',
+    },
+    orientation: {
+      control: { type: 'select' },
+      options: ['horizontal', 'vertical'],
+      description: 'The layout orientation of the action bar items',
+    },
+    align: {
+      control: { type: 'select' },
+      options: ['start', 'center', 'end'],
+      description: 'The alignment of the action bar along the cross axis',
+    },
+    side: {
+      control: { type: 'select' },
+      options: ['top', 'bottom'],
+      description: 'The side of the container where the action bar is anchored',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback fired when the open state changes',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof ActionBar>;
 
-function ActionBarDemo({ open: initialOpen = true }: { open?: boolean }) {
+function ActionBarDemo({
+  open: initialOpen = true,
+  orientation = 'horizontal',
+  align = 'center',
+  side = 'bottom',
+}: {
+  open?: boolean;
+  orientation?: 'horizontal' | 'vertical';
+  align?: 'start' | 'center' | 'end';
+  side?: 'top' | 'bottom';
+}) {
   const [open, setOpen] = React.useState(initialOpen);
   return (
     <div className="relative h-32 flex items-center justify-center">
@@ -29,7 +64,7 @@ function ActionBarDemo({ open: initialOpen = true }: { open?: boolean }) {
       >
         {open ? 'Hide' : 'Show'} ActionBar
       </button>
-      <ActionBar open={open} onOpenChange={setOpen} side="bottom" align="center">
+      <ActionBar open={open} onOpenChange={setOpen} side={side} align={align} orientation={orientation}>
         <ActionBarGroup>
           <ActionBarSelection>3 selected</ActionBarSelection>
           <ActionBarSeparator />
@@ -59,7 +94,20 @@ function ActionBarDemo({ open: initialOpen = true }: { open?: boolean }) {
 }
 
 export const Default: Story = {
-  render: () => <ActionBarDemo />,
+  args: {
+    open: true,
+    orientation: 'horizontal',
+    align: 'center',
+    side: 'bottom',
+  },
+  render: (args) => (
+    <ActionBarDemo
+      open={args.open}
+      orientation={args.orientation as 'horizontal' | 'vertical'}
+      align={args.align as 'start' | 'center' | 'end'}
+      side={args.side as 'top' | 'bottom'}
+    />
+  ),
 };
 
 export const Vertical: Story = {

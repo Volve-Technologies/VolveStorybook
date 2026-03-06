@@ -13,6 +13,16 @@ const meta = {
   component: Tooltip,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    delay: {
+      control: { type: 'number' },
+      description: 'Open delay in ms',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '600' },
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <TooltipProvider>
@@ -26,8 +36,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Tooltip>
+  args: {
+    delay: 600,
+  },
+  render: (args) => (
+    <Tooltip {...args}>
       <TooltipTrigger render={<Button variant="secondary">Hover me</Button>} />
       <TooltipPopup>This is a tooltip</TooltipPopup>
     </Tooltip>

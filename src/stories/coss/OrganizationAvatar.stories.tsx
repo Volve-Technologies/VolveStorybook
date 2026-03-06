@@ -5,15 +5,35 @@ const meta: Meta<typeof OrganizationAvatar> = {
   title: 'Volve UI/Data Display/OrganizationAvatar',
   component: OrganizationAvatar,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: { type: 'range', min: 16, max: 64, step: 4 },
+      description: 'The width and height of the avatar in pixels',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '32' },
+      },
+    },
+    organization: {
+      control: { type: 'object' },
+      description: 'The organization data object containing id and name',
+      table: {
+        type: { summary: '{ id: string; name: string }' },
+      },
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof OrganizationAvatar>;
 
-const org = { id: 'org-1', name: 'Acme Corp' };
-
 export const Default: Story = {
-  render: () => <OrganizationAvatar organization={org} size={32} />,
+  args: {
+    size: 32,
+    organization: { id: '1', name: 'Acme Corp' },
+  },
 };
+
+const org = { id: 'org-1', name: 'Acme Corp' };
 
 export const Sizes: Story = {
   render: () => (

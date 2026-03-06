@@ -15,8 +15,20 @@ const meta = {
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
+    orientation: {
+      control: { type: 'select' },
+      options: ['horizontal', 'vertical'],
+      description: 'Layout orientation of the radio group',
+      table: {
+        defaultValue: { summary: 'vertical' },
+      },
+    },
     disabled: {
       control: { type: 'boolean' },
+      description: 'Whether all radio items in the group are disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
     },
   },
 } satisfies Meta<typeof RadioGroup>;
@@ -25,8 +37,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <RadioGroup defaultValue="option-a">
+  args: {
+    orientation: 'vertical',
+    disabled: false,
+  },
+  render: (args) => (
+    <RadioGroup defaultValue="option-a" {...args}>
       <div className="flex items-center gap-2">
         <Radio value="option-a" id="option-a" />
         <label htmlFor="option-a" className="text-sm font-medium cursor-pointer">

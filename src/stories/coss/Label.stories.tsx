@@ -10,6 +10,24 @@ const meta = {
   component: FieldLabel,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'Label text content',
+    },
+    htmlFor: {
+      control: 'text',
+      description: 'The id of the associated form element',
+    },
+    required: {
+      control: 'boolean',
+      description: 'Whether the associated field is required',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names',
+    },
+  },
 } satisfies Meta<typeof FieldLabel>;
 
 export default meta;
@@ -18,6 +36,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: 'Email address',
+    htmlFor: 'email',
   },
 };
 

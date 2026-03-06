@@ -5,15 +5,44 @@ const meta: Meta<typeof UserAvatar> = {
   title: 'Volve UI/Data Display/UserAvatar',
   component: UserAvatar,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: { type: 'range', min: 16, max: 64, step: 4 },
+      description: 'The width and height of the avatar in pixels',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '32' },
+      },
+    },
+    pending: {
+      control: { type: 'boolean' },
+      description: 'When true, displays the avatar in a pending/invited state',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    user: {
+      control: { type: 'object' },
+      description: 'The user data object containing id, name, email, and optional image',
+      table: {
+        type: { summary: '{ id: string; name: string; email?: string; image?: string }' },
+      },
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof UserAvatar>;
 
-const user = { id: 'user-1', name: 'John Doe', email: 'john@example.com' };
-
 export const Default: Story = {
-  render: () => <UserAvatar user={user} size={32} />,
+  args: {
+    size: 32,
+    pending: false,
+    user: { id: '1', name: 'John Doe', email: 'john@example.com' },
+  },
 };
+
+const user = { id: 'user-1', name: 'John Doe', email: 'john@example.com' };
 
 export const Sizes: Story = {
   render: () => (

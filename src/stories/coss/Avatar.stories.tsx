@@ -6,10 +6,31 @@ const meta = {
   component: Avatar,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS class names to apply to the avatar container',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    className: '',
+  },
+  render: (args) => (
+    <Avatar {...args}>
+      <AvatarImage src="https://i.pravatar.cc/150?img=1" alt="User avatar" />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  ),
+};
 
 export const WithImage: Story = {
   render: () => (

@@ -8,24 +8,43 @@ const meta = {
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
-    disabled: {
-      control: { type: 'boolean' },
-    },
     placeholder: {
       control: { type: 'text' },
+      description: 'Placeholder text shown when the textarea is empty',
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Whether the textarea is disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
     },
     minRows: {
       control: { type: 'number' },
-      description: 'Minimum number of rows before auto-resize',
+      description: 'Minimum number of rows before auto-resize kicks in',
+      table: {
+        defaultValue: { summary: 2 },
+      },
     },
     maxRows: {
       control: { type: 'number' },
-      description: 'Maximum number of rows before scrolling',
+      description: 'Maximum number of rows before the textarea scrolls',
+      table: {
+        defaultValue: { summary: 6 },
+      },
+    },
+    value: {
+      control: { type: 'text' },
+      description: 'Controlled value of the textarea',
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Change event handler',
     },
   },
   decorators: [
     (Story) => (
-      <div className="w-80">
+      <div className="w-72">
         <Story />
       </div>
     ),
@@ -37,7 +56,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'Enter message...',
+    placeholder: 'Enter text...',
+    disabled: false,
+    minRows: 2,
+    maxRows: 6,
   },
 };
 

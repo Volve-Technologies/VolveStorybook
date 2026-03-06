@@ -18,13 +18,47 @@ import {
 const meta: Meta<typeof Loader> = {
   title: 'Volve UI/Feedback/Loader',
   component: Loader,
+  parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: [
+        'circular',
+        'classic',
+        'pulse',
+        'pulse-dot',
+        'dots',
+        'typing',
+        'wave',
+        'bars',
+        'terminal',
+        'text-blink',
+        'text-shimmer',
+        'loading-dots',
+      ],
+      description: 'Animation style of the loader',
+    },
+    size: {
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg'],
+      description: 'Size of the loader',
+    },
+    text: {
+      control: 'text',
+      description: 'Text label displayed by text-based variants (text-blink, text-shimmer, loading-dots)',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Loader>;
 
 export const Default: Story = {
-  render: () => <Loader />,
+  args: {
+    variant: 'circular',
+    size: 'md',
+    text: 'Loading',
+  },
 };
 
 export const AllVariants: Story = {
@@ -99,30 +133,54 @@ export const Sizes: Story = {
 };
 
 export const Circular: Story = {
-  render: () => <CircularLoader />,
+  args: {
+    ...Default.args,
+    variant: 'circular',
+  },
 };
 
 export const Classic: Story = {
-  render: () => <ClassicLoader />,
+  args: {
+    ...Default.args,
+    variant: 'classic',
+  },
 };
 
 export const Dots: Story = {
-  render: () => <DotsLoader />,
+  args: {
+    ...Default.args,
+    variant: 'dots',
+  },
 };
 
 export const Wave: Story = {
-  render: () => <WaveLoader />,
+  args: {
+    ...Default.args,
+    variant: 'wave',
+  },
 };
 
 export const TextBlink: Story = {
-  render: () => <TextBlinkLoader text="Analyzing document..." />,
+  args: {
+    ...Default.args,
+    variant: 'text-blink',
+    text: 'Analyzing document...',
+  },
 };
 
 export const TextShimmerVariant: Story = {
   name: 'Text Shimmer',
-  render: () => <TextShimmerLoader text="Analyzing document..." />,
+  args: {
+    ...Default.args,
+    variant: 'text-shimmer',
+    text: 'Analyzing document...',
+  },
 };
 
 export const LoadingDots: Story = {
-  render: () => <TextDotsLoader text="Analyzing document..." />,
+  args: {
+    ...Default.args,
+    variant: 'loading-dots',
+    text: 'Analyzing document...',
+  },
 };

@@ -12,10 +12,48 @@ const meta = {
   component: Toggle,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    pressed: {
+      control: { type: 'boolean' },
+      description: 'Controlled pressed state of the toggle',
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Whether the toggle is disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    defaultPressed: {
+      control: { type: 'boolean' },
+      description: 'Whether the toggle is pressed by default (uncontrolled)',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    onPressedChange: {
+      action: 'pressedChange',
+      description: 'Callback fired when the pressed state changes',
+    },
+  },
 } satisfies Meta<typeof Toggle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    pressed: false,
+    disabled: false,
+  },
+  render: (args) => (
+    <Toggle {...args}>
+      <Button variant="ghost" size="sm">
+        Toggle
+      </Button>
+    </Toggle>
+  ),
+};
 
 export const SingleSelect: Story = {
   render: () => {

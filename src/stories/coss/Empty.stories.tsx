@@ -11,15 +11,21 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the empty state container',
+    },
+  },
 } satisfies Meta<typeof Empty>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <div className="relative h-64 w-96 border rounded-lg">
-      <Empty>
+      <Empty {...args}>
         <EmptyMedia variant="icon">
           <HugeiconsIcon icon={FolderOpenIcon} />
         </EmptyMedia>

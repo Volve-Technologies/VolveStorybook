@@ -16,8 +16,17 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: '@/app/hooks/useLocalStorage', replacement: path.resolve(dirname, './src/__mocks__/use-local-storage.ts') },
-      { find: '@/app/ui/components/header', replacement: path.resolve(dirname, './src/__mocks__/header.tsx') },
+      { find: '@/app/appContext', replacement: path.resolve(dirname, './src/__mocks__/app-context.tsx') },
+      { find: '@/app/utils/auth', replacement: path.resolve(dirname, './src/__mocks__/auth.ts') },
+      { find: '@/app/hooks/queries/useUsers', replacement: path.resolve(dirname, './src/__mocks__/use-users.ts') },
+      { find: '@/app/hooks/useUserRoles', replacement: path.resolve(dirname, './src/__mocks__/use-user-roles.ts') },
+      { find: '@/app/utils/constants', replacement: path.resolve(dirname, './src/__mocks__/constants.ts') },
+      { find: '@/app/components/shared/WelcomeToNewUiDialog', replacement: path.resolve(dirname, './src/__mocks__/welcome-dialog.tsx') },
+      { find: '@/app/ui/store', replacement: path.resolve(dirname, './src/__mocks__/ui-store.ts') },
+      { find: '@/app/components/shared/MobileChat', replacement: path.resolve(dirname, './src/__mocks__/mobile-chat.tsx') },
+      { find: '@/app/components/shared/Sidechat/store', replacement: path.resolve(dirname, './src/__mocks__/sidechat-store.ts') },
       { find: '@/app/utils/routes', replacement: path.resolve(dirname, './src/__mocks__/routes.ts') },
+      { find: '@/app/components/shared/Citations/CitationListItem', replacement: path.resolve(dirname, './src/__mocks__/citation-list-item.tsx') },
       { find: '@', replacement: path.resolve(dirname, './src') },
       { find: 'next/link', replacement: path.resolve(dirname, './src/__mocks__/next-link.tsx') },
       { find: 'next/navigation', replacement: path.resolve(dirname, './src/__mocks__/next-navigation.ts') },

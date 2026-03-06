@@ -6,14 +6,43 @@ const meta = {
   component: ScrollArea,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    orientation: {
+      control: { type: 'radio' },
+      options: ['horizontal', 'vertical', 'both'],
+      description: 'Controls which scrollbar(s) are rendered',
+      table: {
+        defaultValue: { summary: 'vertical' },
+      },
+    },
+    scrollbarGutter: {
+      control: 'boolean',
+      description: 'When true, reserves space for the scrollbar so content does not shift',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
+    viewportClassName: {
+      control: 'text',
+      description: 'Additional CSS class names applied to the inner viewport element',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names applied to the root element',
+    },
+  },
 } satisfies Meta<typeof ScrollArea>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <ScrollArea className="h-48 w-64 rounded-md border" orientation="vertical">
+  args: {
+    orientation: 'vertical',
+    scrollbarGutter: false,
+  },
+  render: (args) => (
+    <ScrollArea className="h-48 w-64 rounded-md border" {...args}>
       <div className="p-4">
         <h4 className="mb-3 text-sm font-medium leading-none">Items</h4>
         {Array.from({ length: 20 }, (_, i) => (

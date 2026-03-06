@@ -15,6 +15,23 @@ const meta = {
   component: Combobox,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    multiple: {
+      control: { type: 'boolean' },
+      description: 'Allows selecting multiple values',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    placeholder: {
+      control: { type: 'text' },
+      description: 'Placeholder text shown in the combobox input when no value is selected',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
 } satisfies Meta<typeof Combobox>;
 
 export default meta;
@@ -23,10 +40,14 @@ type Story = StoryObj<typeof meta>;
 const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Solid'];
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    multiple: false,
+    placeholder: 'Select a framework...',
+  },
+  render: (args) => (
     <div className="w-64">
-      <Combobox<string>>
-        <ComboboxInput placeholder="Select a framework..." />
+      <Combobox<string> multiple={args.multiple}>
+        <ComboboxInput placeholder={args.placeholder ?? 'Select a framework...'} />
         <ComboboxPopup>
           <ComboboxList>
             <ComboboxEmpty>No frameworks found.</ComboboxEmpty>

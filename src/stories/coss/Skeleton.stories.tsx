@@ -8,13 +8,20 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Additional CSS classes to control size and shape of the skeleton block',
+    },
+  },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <Skeleton className="h-4 w-64" />,
+  args: { className: 'h-4 w-64' },
+  render: (args) => <Skeleton {...args} />,
 };
 
 export const Card: Story = {

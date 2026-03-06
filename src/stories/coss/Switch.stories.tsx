@@ -8,15 +8,31 @@ const meta = {
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
-    disabled: {
-      control: { type: 'boolean' },
-    },
-    defaultChecked: {
-      control: { type: 'boolean' },
-    },
     size: {
       control: { type: 'select' },
       options: ['sm', 'md'],
+      description: 'Size of the switch',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Whether the switch is disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    defaultChecked: {
+      control: { type: 'boolean' },
+      description: 'Whether the switch is checked by default (uncontrolled)',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    onCheckedChange: {
+      action: 'checkedChange',
+      description: 'Callback fired when the checked state changes',
     },
   },
 } satisfies Meta<typeof Switch>;
@@ -27,6 +43,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     size: 'md',
+    disabled: false,
+    defaultChecked: false,
   },
 };
 

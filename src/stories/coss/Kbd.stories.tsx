@@ -8,17 +8,28 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'Key label displayed inside the keyboard shortcut element',
+    },
+  },
 } satisfies Meta<typeof Kbd>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <Kbd>K</Kbd>,
+  args: {
+    children: 'K',
+  },
 };
 
 export const Escape: Story = {
-  render: () => <Kbd>Esc</Kbd>,
+  args: {
+    ...Default.args,
+    children: 'Esc',
+  },
 };
 
 export const Shortcut: Story = {

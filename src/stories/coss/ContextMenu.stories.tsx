@@ -18,13 +18,23 @@ import * as React from 'react';
 const meta: Meta = {
   title: 'Volve UI/Overlays/ContextMenu',
   tags: ['autodocs'],
+  argTypes: {
+    open: {
+      control: { type: 'boolean' },
+      description: 'Controlled open state of the context menu',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback fired when the open state changes',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => (
-    <ContextMenu>
+  render: (args) => (
+    <ContextMenu {...args}>
       <ContextMenuTrigger
         className="flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed text-sm text-muted-foreground select-none"
       >

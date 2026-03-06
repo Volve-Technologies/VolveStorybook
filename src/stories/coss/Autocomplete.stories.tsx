@@ -15,6 +15,15 @@ const meta = {
   component: Autocomplete,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    placeholder: {
+      control: { type: 'text' },
+      description: 'Placeholder text shown in the autocomplete input when empty',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
 } satisfies Meta<typeof Autocomplete>;
 
 export default meta;
@@ -23,10 +32,16 @@ type Story = StoryObj<typeof meta>;
 const fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    placeholder: 'Search fruits...',
+  },
+  render: (args) => (
     <div className="w-64">
       <Autocomplete>
-        <AutocompleteInput placeholder="Search fruits..." showTrigger />
+        <AutocompleteInput
+          placeholder={args.placeholder ?? 'Search fruits...'}
+          showTrigger
+        />
         <AutocompletePopup>
           <AutocompleteList>
             <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>

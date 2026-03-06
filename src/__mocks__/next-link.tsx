@@ -5,8 +5,16 @@ type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ href, children, ...props }, ref) => (
-    <a href={href} ref={ref} {...props}>
+  ({ href, children, onClick, ...props }, ref) => (
+    <a
+      href={href}
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick?.(e);
+      }}
+      {...props}
+    >
       {children}
     </a>
   )

@@ -5,9 +5,21 @@ const meta: Meta<typeof H1> = {
   title: 'Volve UI/Typography/Heading',
   component: H1,
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'Heading text content',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof H1>;
+
+export const Default: Story = {
+  args: {
+    children: 'Heading text',
+  },
+};
 
 export const All: Story = {
   render: () => (
@@ -21,7 +33,10 @@ export const All: Story = {
 
 export const H1Story: Story = {
   name: 'H1',
-  render: () => <H1>The quick brown fox jumps over the lazy dog</H1>,
+  args: {
+    ...Default.args,
+    children: 'The quick brown fox jumps over the lazy dog',
+  },
 };
 
 export const H2Story: Story = {

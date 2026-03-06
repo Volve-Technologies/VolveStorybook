@@ -17,16 +17,31 @@ const meta = {
   component: Sheet,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    side: {
+      control: { type: 'select' },
+      options: ['right', 'left', 'top', 'bottom'],
+      description: 'The side from which the sheet slides in',
+    },
+    inset: {
+      control: { type: 'boolean' },
+      description: 'Adds rounded corners and padding on larger screens for a floating effect',
+    },
+  },
 } satisfies Meta<typeof Sheet>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    side: 'right',
+    inset: false,
+  },
+  render: (args) => (
     <Sheet>
       <SheetTrigger render={<Button variant="secondary" />}>Open Sheet</SheetTrigger>
-      <SheetPopup side="right">
+      <SheetPopup side={args.side as 'right' | 'left' | 'top' | 'bottom'} inset={args.inset}>
         <SheetHeader>
           <SheetTitle>Edit Profile</SheetTitle>
           <SheetXClose />
@@ -50,10 +65,14 @@ export const Default: Story = {
 };
 
 export const Left: Story = {
-  render: () => (
+  args: {
+    side: 'left',
+    inset: false,
+  },
+  render: (args) => (
     <Sheet>
       <SheetTrigger render={<Button variant="secondary" />}>Open Left Sheet</SheetTrigger>
-      <SheetPopup side="left">
+      <SheetPopup side={args.side as 'right' | 'left' | 'top' | 'bottom'} inset={args.inset}>
         <SheetHeader>
           <SheetTitle>Navigation</SheetTitle>
           <SheetXClose />
@@ -76,10 +95,14 @@ export const Left: Story = {
 };
 
 export const Bottom: Story = {
-  render: () => (
+  args: {
+    side: 'bottom',
+    inset: false,
+  },
+  render: (args) => (
     <Sheet>
       <SheetTrigger render={<Button variant="secondary" />}>Open Bottom Sheet</SheetTrigger>
-      <SheetPopup side="bottom">
+      <SheetPopup side={args.side as 'right' | 'left' | 'top' | 'bottom'} inset={args.inset}>
         <SheetHeader>
           <SheetTitle>Share</SheetTitle>
           <SheetXClose />
@@ -101,10 +124,14 @@ export const Bottom: Story = {
 };
 
 export const Inset: Story = {
-  render: () => (
+  args: {
+    side: 'right',
+    inset: true,
+  },
+  render: (args) => (
     <Sheet>
       <SheetTrigger render={<Button variant="secondary" />}>Open Inset Sheet</SheetTrigger>
-      <SheetPopup side="right" inset={true}>
+      <SheetPopup side={args.side as 'right' | 'left' | 'top' | 'bottom'} inset={args.inset}>
         <SheetHeader>
           <SheetTitle>Inset Sheet</SheetTitle>
           <SheetXClose />

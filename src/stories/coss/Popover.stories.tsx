@@ -14,16 +14,40 @@ const meta = {
   component: Popover,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    side: {
+      control: { type: 'select' },
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'The preferred side to position the popover relative to its trigger',
+      table: {
+        type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
+        defaultValue: { summary: 'bottom' },
+      },
+    },
+    align: {
+      control: { type: 'select' },
+      options: ['start', 'center', 'end'],
+      description: 'The alignment of the popover along the trigger axis',
+      table: {
+        type: { summary: "'start' | 'center' | 'end'" },
+        defaultValue: { summary: 'center' },
+      },
+    },
+  },
 } satisfies Meta<typeof Popover>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    side: 'bottom',
+    align: 'center',
+  },
+  render: (args) => (
     <Popover>
       <PopoverTrigger render={<Button variant="secondary">Open popover</Button>} />
-      <PopoverPopup className="w-72 p-4">
+      <PopoverPopup className="w-72 p-4" side={args.side} align={args.align}>
         <PopoverTitle>Popover</PopoverTitle>
         <PopoverDescription className="mt-1">
           This is some helpful information displayed inside the popover. It can contain

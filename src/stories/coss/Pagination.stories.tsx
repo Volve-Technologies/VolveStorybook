@@ -16,14 +16,24 @@ const meta = {
   component: Pagination,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the pagination root element',
+    },
+    'aria-label': {
+      control: { type: 'text' },
+      description: 'Accessible label for the pagination navigation landmark',
+    },
+  },
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Pagination>
+  render: (args) => (
+    <Pagination {...args}>
       <PaginationContent>
         <PaginationItem>
           <PaginationFirst />

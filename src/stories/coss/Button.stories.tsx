@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
 import { Button } from '@/app/ui/components/button';
 import { Search01Icon, Add01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -27,16 +26,34 @@ const meta = {
         'accent',
         'unstyled',
       ],
+      description: 'Visual style variant of the button',
     },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'Size of the button',
     },
     kind: {
       control: { type: 'select' },
       options: ['default', 'icon', 'with-icon'],
+      description: 'Layout kind — default text, icon-only, or text with icon',
     },
-    disabled: { control: 'boolean' },
+    pending: {
+      control: 'boolean',
+      description: 'Shows a loading spinner and disables interaction',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables the button',
+    },
+    children: {
+      control: 'text',
+      description: 'Button label text',
+    },
+    onClick: {
+      action: 'clicked',
+      description: 'Click event handler',
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -48,6 +65,9 @@ export const Default: Story = {
     children: 'Button',
     variant: 'primary',
     size: 'md',
+    kind: 'default',
+    disabled: false,
+    pending: false,
   },
 };
 
@@ -102,6 +122,7 @@ export const WithIcon: Story = {
 
 export const Destructive: Story = {
   args: {
+    ...Default.args,
     children: 'Delete',
     variant: 'destructive',
   },
@@ -109,6 +130,7 @@ export const Destructive: Story = {
 
 export const Secondary: Story = {
   args: {
+    ...Default.args,
     children: 'Secondary',
     variant: 'secondary',
   },
@@ -116,6 +138,7 @@ export const Secondary: Story = {
 
 export const Ghost: Story = {
   args: {
+    ...Default.args,
     children: 'Ghost',
     variant: 'ghost',
   },
@@ -123,7 +146,16 @@ export const Ghost: Story = {
 
 export const Disabled: Story = {
   args: {
+    ...Default.args,
     children: 'Disabled',
     disabled: true,
+  },
+};
+
+export const Pending: Story = {
+  args: {
+    ...Default.args,
+    children: 'Saving…',
+    pending: true,
   },
 };

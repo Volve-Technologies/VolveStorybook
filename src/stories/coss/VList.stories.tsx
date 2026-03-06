@@ -5,6 +5,20 @@ const meta: Meta<typeof VList> = {
   title: 'Volve UI/Data Display/VList',
   component: VList,
   tags: ['autodocs'],
+  argTypes: {
+    totalSize: {
+      control: { type: 'number', min: 0 },
+      description: 'Total pixel height of all virtualised items combined — sets the scroll height of the list',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names for the VList outer element',
+    },
+    children: {
+      control: false,
+      description: 'VListContent element(s) containing the visible items',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof VList>;
@@ -22,9 +36,12 @@ const VISIBLE_COUNT = 8;
 const VISIBLE_ITEMS = ITEMS.slice(VISIBLE_START, VISIBLE_COUNT);
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    totalSize: ITEMS.length * ITEM_HEIGHT,
+  },
+  render: (args) => (
     <div className="border rounded-lg overflow-hidden h-64 overflow-y-auto">
-      <VList totalSize={ITEMS.length * ITEM_HEIGHT}>
+      <VList {...args}>
         <VListContent start={VISIBLE_START * ITEM_HEIGHT}>
           {VISIBLE_ITEMS.map((item) => (
             <div

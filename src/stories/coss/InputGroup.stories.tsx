@@ -4,9 +4,10 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroupInput,
+  InputGroupTextarea,
 } from '@/app/ui/components/input/input-group';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Search01Icon, Mail01Icon, User01Icon } from '@hugeicons/core-free-icons';
+import { Search01Icon, Mail01Icon, UserIcon } from '@hugeicons/core-free-icons';
 
 const meta = {
   title: 'Volve UI/Forms/InputGroup',
@@ -19,8 +20,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <InputGroup className="w-72">
+  args: { className: 'w-72' },
+  render: (args) => (
+    <InputGroup {...args}>
       <InputGroupAddon align="inline-start">
         <HugeiconsIcon icon={Search01Icon} />
       </InputGroupAddon>
@@ -58,6 +60,18 @@ export const EmailInput: Story = {
         <HugeiconsIcon icon={Mail01Icon} />
       </InputGroupAddon>
       <InputGroupInput type="email" placeholder="Email" />
+    </InputGroup>
+  ),
+};
+
+/** InputGroupTextarea — multiline textarea variant inside an InputGroup */
+export const WithTextarea: Story = {
+  render: () => (
+    <InputGroup className="w-72">
+      <InputGroupAddon align="block-start">
+        <InputGroupText>Note</InputGroupText>
+      </InputGroupAddon>
+      <InputGroupTextarea placeholder="Enter a note..." rows={4} />
     </InputGroup>
   ),
 };

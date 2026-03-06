@@ -4,6 +4,12 @@ import { createStepper } from '@/app/ui/components/stepper';
 const meta: Meta = {
   title: 'Volve UI/Navigation/Stepper',
   tags: ['autodocs'],
+  argTypes: {
+    storageKey: {
+      control: 'text',
+      description: 'Unique key used to persist stepper state in sessionStorage',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj;
@@ -27,9 +33,10 @@ const {
 } = createStepper(['general', 'details', 'review'] as const);
 
 export const Default: Story = {
-  render: () => (
+  args: { storageKey: 'storybook-demo-stepper' },
+  render: (args) => (
     <div className="h-[500px] border rounded-xl overflow-hidden">
-      <Stepper storageKey="storybook-demo-stepper">
+      <Stepper storageKey={args.storageKey}>
         <StepperAside className="p-4 border-r bg-surface-2">
           <StepperTitle>Create Project</StepperTitle>
           <StepperDescription>Fill in the project details below.</StepperDescription>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Menu,
+  Submenu,
   MenuTrigger,
   MenuPopup,
   MenuItem,
@@ -11,24 +12,47 @@ import {
   MenuCheckboxItem,
   MenuRadioGroup,
   MenuRadioItem,
+  MenuSubmenuTrigger,
+  MenuTriggerIcon,
 } from '@/app/ui/components/menu';
 import { Button } from '@/app/ui/components/button';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Edit02Icon, Delete02Icon, Copy01Icon, Share01Icon } from '@hugeicons/core-free-icons';
+import { Edit02Icon, Delete02Icon, Copy01Icon, Share01Icon, Settings01Icon, UserIcon } from '@hugeicons/core-free-icons';
 
 const meta = {
   title: 'Volve UI/Navigation/Menu',
   component: Menu,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    open: {
+      control: { type: 'boolean' },
+      description: 'Controlled open state of the menu',
+    },
+    onOpenChange: {
+      action: 'onOpenChange',
+      description: 'Callback fired when the open state changes',
+    },
+    defaultOpen: {
+      control: { type: 'boolean' },
+      description: 'The default open state when uncontrolled',
+    },
+    modal: {
+      control: { type: 'boolean' },
+      description: 'Whether the menu is modal',
+    },
+  },
 } satisfies Meta<typeof Menu>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Menu>
+  args: {
+    open: undefined,
+  },
+  render: (args) => (
+    <Menu {...args}>
       <MenuTrigger render={<Button variant="secondary">Options</Button>} />
       <MenuPopup>
         <MenuItem>Edit</MenuItem>
@@ -166,4 +190,57 @@ export const WithRadio: Story = {
       </Menu>
     );
   },
+};
+
+/** MenuTriggerIcon — dropdown chevron shown inside a trigger button */
+export const WithTriggerIcon: Story = {
+  render: () => (
+    <Menu>
+      <MenuTrigger render={<Button variant="secondary" size="sm">
+        Options <MenuTriggerIcon />
+      </Button>} />
+      <MenuPopup>
+        <MenuItem><HugeiconsIcon icon={Edit02Icon} />Edit</MenuItem>
+        <MenuItem><HugeiconsIcon icon={Copy01Icon} />Duplicate</MenuItem>
+        <MenuSeparator />
+        <MenuItem><HugeiconsIcon icon={Delete02Icon} />Delete</MenuItem>
+      </MenuPopup>
+    </Menu>
+  ),
+};
+
+/** Submenu + MenuSubmenuTrigger — nested menu panel */
+export const WithSubmenu: Story = {
+  render: () => (
+    <Menu>
+      <MenuTrigger render={<Button variant="secondary">Options</Button>} />
+      <MenuPopup>
+        <MenuItem><HugeiconsIcon icon={Edit02Icon} />Edit</MenuItem>
+        <MenuItem><HugeiconsIcon icon={Copy01Icon} />Duplicate</MenuItem>
+        <Submenu>
+          <MenuSubmenuTrigger>
+            <HugeiconsIcon icon={Share01Icon} />
+            Share
+          </MenuSubmenuTrigger>
+          <MenuPopup>
+            <MenuItem>Copy link</MenuItem>
+            <MenuItem>Share via email</MenuItem>
+            <MenuItem>Export as PDF</MenuItem>
+          </MenuPopup>
+        </Submenu>
+        <Submenu>
+          <MenuSubmenuTrigger>
+            <HugeiconsIcon icon={Settings01Icon} />
+            Permissions
+          </MenuSubmenuTrigger>
+          <MenuPopup>
+            <MenuItem><HugeiconsIcon icon={UserIcon} />View only</MenuItem>
+            <MenuItem><HugeiconsIcon icon={Edit02Icon} />Can edit</MenuItem>
+          </MenuPopup>
+        </Submenu>
+        <MenuSeparator />
+        <MenuItem><HugeiconsIcon icon={Delete02Icon} />Delete</MenuItem>
+      </MenuPopup>
+    </Menu>
+  ),
 };

@@ -9,6 +9,12 @@ const meta = {
   component: ActionToolbar,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the toolbar. Use "opacity-100" to always show.',
+    },
+  },
   decorators: [
     (Story) => (
       <TooltipProvider>
@@ -22,13 +28,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <div className="group/action relative w-80">
       <div className="rounded-lg border p-4 text-sm text-muted-foreground">
         Hover over this card to reveal the action toolbar.
       </div>
       <div className="absolute top-2 right-2">
-        <ActionToolbar>
+        <ActionToolbar {...args}>
           <ActionToolbarButton label="Copy">
             <HugeiconsIcon icon={Copy01Icon} />
           </ActionToolbarButton>

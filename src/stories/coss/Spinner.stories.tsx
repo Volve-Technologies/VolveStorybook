@@ -12,10 +12,12 @@ const meta = {
     size: {
       control: { type: 'select' },
       options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'Size of the spinner',
     },
     kind: {
       control: { type: 'select' },
       options: ['default', 'inset'],
+      description: 'Visual kind — default standalone or inset inside another element',
     },
   },
 } satisfies Meta<typeof Spinner>;
@@ -45,12 +47,21 @@ export const AllSizes: Story = {
 
 export const Small: Story = {
   args: {
+    ...Default.args,
     size: 'sm',
   },
 };
 
 export const Large: Story = {
   args: {
+    ...Default.args,
     size: 'lg',
+  },
+};
+
+export const Inset: Story = {
+  args: {
+    ...Default.args,
+    kind: 'inset',
   },
 };

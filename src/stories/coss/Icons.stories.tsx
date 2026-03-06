@@ -4,6 +4,12 @@ import { Icons } from '@/app/ui/components/icons';
 const meta: Meta = {
   title: 'Volve UI/Brand/Icons',
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'CSS class names to apply to an individual icon — useful for sizing (e.g. size-8) and color',
+    },
+  },
 };
 export default meta;
 type Story = StoryObj;

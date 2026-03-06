@@ -15,15 +15,45 @@ const meta = {
   component: Select,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disables the select control',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    required: {
+      control: { type: 'boolean' },
+      description: 'Marks the select as required in a form context',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    defaultValue: {
+      control: { type: 'text' },
+      description: 'The default selected value (uncontrolled)',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
 } satisfies Meta<typeof Select>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    disabled: false,
+    required: false,
+    defaultValue: '',
+  },
+  render: (args) => (
     <div className="w-56">
-      <Select>
+      <Select {...args}>
         <SelectTrigger placeholder="Select a fruit" />
         <SelectPopup>
           <SelectItem value="apple">Apple</SelectItem>

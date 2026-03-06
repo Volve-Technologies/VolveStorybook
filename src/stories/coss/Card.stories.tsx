@@ -7,20 +7,32 @@ const meta = {
   component: Card,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: { type: 'text' },
+      description: 'The content rendered inside the card',
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS class names to apply to the card',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  },
 } satisfies Meta<typeof Card>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Card className="w-80">
-      <p className="text-sm text-muted-foreground">
-        This is a simple card. It provides a rounded container with a border, white
-        background, padding, and a subtle shadow.
-      </p>
-    </Card>
-  ),
+  args: {
+    children: 'Card content',
+    className: 'w-80',
+  },
 };
 
 export const WithTitle: Story = {

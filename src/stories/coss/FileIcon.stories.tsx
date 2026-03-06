@@ -5,6 +5,16 @@ const meta: Meta<typeof FileIcon> = {
   title: 'Volve UI/Data Display/FileIcon',
   component: FileIcon,
   tags: ['autodocs'],
+  argTypes: {
+    fileName: {
+      control: 'text',
+      description: 'File name with extension — determines the icon displayed (e.g. document.pdf, report.docx, data.xlsx)',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names, useful for controlling icon size (e.g. size-8)',
+    },
+  },
   args: {
     fileName: 'document.pdf',
   },

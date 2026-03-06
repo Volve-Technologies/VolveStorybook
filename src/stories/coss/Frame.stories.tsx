@@ -14,14 +14,27 @@ const meta = {
   component: Frame,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    stackedPanels: {
+      control: { type: 'boolean' },
+      description: 'When true, renders multiple FramePanel children stacked with dividers between them',
+    },
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the frame container',
+    },
+  },
 } satisfies Meta<typeof Frame>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Frame className="w-80">
+  args: {
+    stackedPanels: false,
+  },
+  render: (args) => (
+    <Frame className="w-80" stackedPanels={args.stackedPanels}>
       <FramePanel>
         <FramePanelHeader>
           <FramePanelTitle>Analytics</FramePanelTitle>

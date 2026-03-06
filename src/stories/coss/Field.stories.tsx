@@ -14,6 +14,24 @@ const meta = {
   component: Field,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    invalid: {
+      control: { type: 'boolean' },
+      description: 'Marks the field as invalid, showing error styles and triggering FieldError visibility',
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disables all interactive elements within the field',
+    },
+    name: {
+      control: { type: 'text' },
+      description: 'Name attribute used for form submission and field identification',
+    },
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the field container',
+    },
+  },
   decorators: [
     (Story) => (
       <div className="w-80">
@@ -27,8 +45,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Field>
+  args: {
+    invalid: false,
+    disabled: false,
+  },
+  render: (args) => (
+    <Field {...args}>
       <FieldLabel>Full Name</FieldLabel>
       <FieldControl placeholder="John Doe" />
     </Field>

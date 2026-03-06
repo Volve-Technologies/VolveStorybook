@@ -12,18 +12,43 @@ const meta = {
       control: { type: 'select' },
       options: ['default', 'unstyled'],
       description: 'Visual variant of the input',
+      table: {
+        defaultValue: { summary: 'default' },
+      },
     },
     size: {
       control: { type: 'select' },
       options: ['sm', 'md', 'lg'],
       description: 'Size of the input',
+      table: {
+        defaultValue: { summary: 'md' },
+      },
     },
     disabled: {
       control: { type: 'boolean' },
+      description: 'Whether the input is disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    placeholder: {
+      control: { type: 'text' },
+      description: 'Placeholder text shown when the input is empty',
     },
     type: {
       control: { type: 'text' },
-      description: 'HTML input type attribute',
+      description: 'HTML input type attribute (text, email, password, number, etc.)',
+      table: {
+        defaultValue: { summary: 'text' },
+      },
+    },
+    value: {
+      control: { type: 'text' },
+      description: 'Controlled value of the input',
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Change event handler',
     },
   },
   decorators: [
@@ -41,6 +66,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: 'Enter text...',
+    variant: 'default',
+    size: 'md',
+    disabled: false,
+    type: 'text',
   },
 };
 

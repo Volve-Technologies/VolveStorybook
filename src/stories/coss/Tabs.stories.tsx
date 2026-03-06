@@ -7,14 +7,28 @@ const meta = {
   component: Tabs,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    orientation: {
+      control: { type: 'radio' },
+      options: ['horizontal', 'vertical'],
+      description: 'The orientation of the tabs list',
+      table: {
+        type: { summary: "'horizontal' | 'vertical'" },
+        defaultValue: { summary: 'horizontal' },
+      },
+    },
+  },
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Tabs defaultValue="overview" className="w-[400px]">
+  args: {
+    orientation: 'horizontal',
+  },
+  render: (args) => (
+    <Tabs defaultValue="overview" className="w-[400px]" {...args}>
       <TabsList>
         <TabsTab value="overview">Overview</TabsTab>
         <TabsTab value="analytics">Analytics</TabsTab>

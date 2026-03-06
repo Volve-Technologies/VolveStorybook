@@ -12,6 +12,7 @@ const meta = {
     orientation: {
       control: { type: 'select' },
       options: ['horizontal', 'vertical'],
+      description: 'Direction of the separator line',
     },
   },
 } satisfies Meta<typeof Separator>;
@@ -20,17 +21,24 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    orientation: 'horizontal',
+  },
+  render: (args) => (
     <div className="w-64">
-      <Separator orientation="horizontal" />
+      <Separator {...args} />
     </div>
   ),
 };
 
 export const Vertical: Story = {
-  render: () => (
+  args: {
+    ...Default.args,
+    orientation: 'vertical',
+  },
+  render: (args) => (
     <div className="flex h-8 items-center">
-      <Separator orientation="vertical" className="h-8" />
+      <Separator {...args} className="h-8" />
     </div>
   ),
 };

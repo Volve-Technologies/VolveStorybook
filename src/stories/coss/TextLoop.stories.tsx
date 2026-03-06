@@ -6,9 +6,26 @@ const meta: Meta<typeof TextLoop> = {
   title: 'Volve UI/Animation/TextLoop',
   component: TextLoop,
   tags: ['autodocs'],
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'The text or ReactNode content to display inside the animated loop',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class names for the TextLoop element',
+    },
+  },
+  args: {
+    children: 'Hello World',
+  },
 };
 export default meta;
 type Story = StoryObj<typeof TextLoop>;
+
+export const Default: Story = {
+  render: (args) => <TextLoop {...args} />,
+};
 
 function CyclingDemo() {
   const messages = [
@@ -30,7 +47,7 @@ function CyclingDemo() {
   return <TextLoop className="text-sm text-muted-foreground">{messages[index]}</TextLoop>;
 }
 
-export const Default: Story = {
+export const Cycling: Story = {
   render: () => <CyclingDemo />,
 };
 

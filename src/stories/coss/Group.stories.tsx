@@ -8,14 +8,20 @@ const meta = {
   component: Group,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the group container',
+    },
+  },
 } satisfies Meta<typeof Group>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Group>
+  render: (args) => (
+    <Group {...args}>
       <GroupItem render={<Button variant="secondary">First</Button>} />
       <GroupItem render={<Button variant="secondary">Second</Button>} />
       <GroupItem render={<Button variant="secondary">Third</Button>} />

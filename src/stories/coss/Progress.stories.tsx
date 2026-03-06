@@ -11,6 +11,10 @@ const meta = {
   argTypes: {
     value: {
       control: { type: 'range', min: 0, max: 100, step: 1 },
+      description: 'Current progress value between 0 and 100',
+      table: {
+        defaultValue: { summary: 0 },
+      },
     },
   },
 } satisfies Meta<typeof Progress>;
@@ -19,9 +23,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    value: 50,
+  },
+  render: (args) => (
     <div className="w-80">
-      <Progress value={60}>
+      <Progress {...args}>
         <ProgressTrack />
       </Progress>
     </div>

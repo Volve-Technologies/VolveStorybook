@@ -23,14 +23,21 @@ const meta = {
         'warning',
         'success',
       ],
+      description: 'Visual style variant of the badge',
     },
     size: {
       control: { type: 'select' },
       options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      description: 'Size of the badge',
     },
     kind: {
       control: { type: 'select' },
       options: ['default', 'icon', 'count'],
+      description: 'Layout kind — default text, icon-only, or numeric count',
+    },
+    children: {
+      control: 'text',
+      description: 'Badge label or content',
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -42,7 +49,8 @@ export const Default: Story = {
   args: {
     children: 'Badge',
     variant: 'default',
-    size: 'sm',
+    size: 'md',
+    kind: 'default',
   },
 };
 
@@ -95,6 +103,7 @@ export const CountBadge: Story = {
 
 export const Destructive: Story = {
   args: {
+    ...Default.args,
     children: 'Destructive',
     variant: 'destructive',
   },
@@ -102,6 +111,7 @@ export const Destructive: Story = {
 
 export const Success: Story = {
   args: {
+    ...Default.args,
     children: 'Success',
     variant: 'success',
   },
@@ -109,6 +119,7 @@ export const Success: Story = {
 
 export const Warning: Story = {
   args: {
+    ...Default.args,
     children: 'Warning',
     variant: 'warning',
   },

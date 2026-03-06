@@ -10,12 +10,28 @@ const meta = {
   argTypes: {
     disabled: {
       control: { type: 'boolean' },
+      description: 'Whether the checkbox is disabled',
+      table: {
+        defaultValue: { summary: false },
+      },
     },
     defaultChecked: {
       control: { type: 'boolean' },
+      description: 'Whether the checkbox is checked by default (uncontrolled)',
+      table: {
+        defaultValue: { summary: false },
+      },
     },
     indeterminate: {
       control: { type: 'boolean' },
+      description: 'Whether the checkbox is in an indeterminate state',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    onCheckedChange: {
+      action: 'checkedChange',
+      description: 'Callback fired when the checked state changes',
     },
   },
 } satisfies Meta<typeof Checkbox>;
@@ -24,7 +40,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    disabled: false,
+    defaultChecked: false,
+  },
 };
 
 export const Checked: Story = {

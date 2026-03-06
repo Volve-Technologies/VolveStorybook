@@ -9,9 +9,13 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: { autodocs: 'tag' },
     a11y: {
       test: 'todo',
     },
+  },
+  argTypes: {
+    children: { control: false },
   },
 };
 

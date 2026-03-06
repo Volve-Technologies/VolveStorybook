@@ -13,14 +13,24 @@ const meta = {
   component: Breadcrumb,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      control: { type: 'text' },
+      description: 'Additional CSS classes applied to the breadcrumb navigation element',
+    },
+    'aria-label': {
+      control: { type: 'text' },
+      description: 'Accessible label for the breadcrumb navigation landmark',
+    },
+  },
 } satisfies Meta<typeof Breadcrumb>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Breadcrumb>
+  render: (args) => (
+    <Breadcrumb {...args}>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="#">Home</BreadcrumbLink>
